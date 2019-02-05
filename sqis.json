@@ -1,0 +1,17 @@
+{
+  "constantA": 0.1,
+  "constantB": 0.07,
+  "homeAdvantage": 1.33333333,
+  "homeAdvantageGG": 0.133333333,
+  "attacks": 12,
+  "etAttackCoeff": 0.333333333,
+  "shootoutLength": 5,
+  "goldenGoalProb": 0.5,
+  "shootoutProb": 0.65,
+  "pointValues": 1,
+  "attackCoeffs": 1,
+  "NSFSStyleCoeffA": 2.0991677816057,
+  "NSFSStyleCoeffB": 1.2442581729602,
+  "NSFSStyleExponent": -0.42705203296846,
+  "NSFSStyleOffset": 0.072435335725325
+}

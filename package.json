@@ -1,0 +1,13 @@
+{
+  "name": "scorebot",
+  "version": "0.0.1",
+  "description": "Scorination bot for NS Sport",
+  "main": "bot.js",
+  "author": "Osarius",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^11.1.0",
+    "mysql": "^2.14.1",
+    "snekfetch": "^3.2.9"
+  }
+}
