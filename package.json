@@ -4,7 +4,7 @@
   "description": "Scorination bot for NS Sport",
   "main": "bot.js",
   "author": "Osarius",
-  "license": "ISC",
+  "license": "GNU General Public License v3.0",
   "dependencies": {
     "discord.js": "^11.1.0",
     "mysql": "^2.14.1",
