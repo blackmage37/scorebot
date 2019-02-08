@@ -3,7 +3,7 @@ const Discord = module.require("discord.js");
 module.exports.run = async (bot, message, args, con) => {
 	let embed = {
 		"title": "ScoreBot",
-		"description": "This bot allows you to scorinate single matches easily in discord! The prefix is a full stop, so the command to open this men, for example, is `.help`",
+		"description": "This bot allows you to scorinate single matches easily in discord! The prefix is a full stop, so the command to open this menu, for example, is `.help`",
 		"color": 12582912,
 		"thumbnail": {
 			"url": " "
@@ -19,7 +19,7 @@ module.exports.run = async (bot, message, args, con) => {
             },
             {
                 "name": "past",
-                "value": "*Displays a list of results for all games a user has scorinated, with the parameters they passed to the bot*"
+                "value": "Params: (optional) a result id OR (optional) tag a user\n*Displays either the specified result, with the original params passed OR a list of results for all games a user has scorinated, with the parameters they passed to the bot. If no user is tagged, it displays all results by the user calling the command*"
             }
 		]
 	};

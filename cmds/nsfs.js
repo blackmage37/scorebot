@@ -3,7 +3,9 @@ const Discord = require("discord.js");
 
 module.exports.run = async (bot, message, args, con) => {
 
-    let originalParams = args.join(' ');
+	message.channel.send("The NSFS formula has not been implemented yet, sorry!");
+
+/*     let originalParams = args.join(' ');
 
     // calculate the result
 
@@ -34,7 +36,7 @@ module.exports.run = async (bot, message, args, con) => {
     };
 
     // send the result message
-    message.channel.send({ embed: embed });
+    message.channel.send({ embed: embed }); */
 
 }
 
