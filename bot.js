@@ -60,7 +60,7 @@ bot.on("message", async message => {
 	let command = messageArray[0];
 	let args = messageArray.slice(1);
 
-    // if it doesnt have the command prefix, ignore it
+    // if it doesn't have the command prefix, ignore it
 	if(!command.startsWith(prefix)) return;
 
     // set a 2 second rate limit for commands
