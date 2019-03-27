@@ -1,9 +1,12 @@
 {
   "token": "YOUR TOKEN HERE",
   "prefix": ".",
-  "dbhost": " ",
-  "dbuser": " ",
-  "dbpass": " ",
-  "dbname": " ",
-  "resultstbl": " "
+  "dbhost": "DATABASE HOST NAME/IP ADDRESS",
+  "dbuser": "DATABASE USERNAME",
+  "dbpass": "DATABASE PASSWORD",
+  "dbname": "DATABASE NAME",
+  "resultstbl": "NAME OF THE TABLE TO STORE SCORINATION RESULTS",
+  "triviatbl": "(optional) NAME OF THE TABLE TO STORE TRIVIA",
+  "vowelstbl": "(optional) NAME OF THE TABLE TO STORE PHRASES FOR THE MISSING VOWEL GAME",
+  "userstbl": "(optional) NAME OF THE TABLE TO STORE PLAYER SCORES FOR TRIVIA/MISSING VOWELS"
 }
