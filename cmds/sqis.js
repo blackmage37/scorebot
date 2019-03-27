@@ -1,5 +1,6 @@
 const sqisConfig = require("../sqis.json");                     // loads SQIS formula details
 const Discord = require("discord.js");
+const botSettings = require("./botsettings.json");              // loads botsettings from external file
 
 module.exports.run = async (bot, message, args, con) => {
 
@@ -174,7 +175,7 @@ module.exports.run = async (bot, message, args, con) => {
         console.log(resultString);
 
         // insert results to database
-        let sql = `INSERT INTO scoreHistory ( userID, messageID, channelID, guildID, formula, params, result ) VALUES ( '${message.author.id}', '${message.id}', '${message.channel.id}', '${message.guild.id}', 'sqis', '${originalParams}', '${resultString}' )`;
+        let sql = `INSERT INTO ${botSettings.resultstbl} ( userID, messageID, channelID, guildID, formula, params, result ) VALUES ( '${message.author.id}', '${message.id}', '${message.channel.id}', '${message.guild.id}', 'sqis', '${originalParams}', '${resultString}' )`;
         con.query(sql, (err, row) => {
             if (err) throw err;
             

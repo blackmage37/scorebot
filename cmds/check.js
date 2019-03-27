@@ -1,4 +1,5 @@
 const Discord = require("discord.js");
+const botSettings = require("./botsettings.json");              // loads botsettings from external file
 
 /* retrieves past results from the scorination database
    
@@ -18,7 +19,7 @@ module.exports.run = async (bot, message, args, con) => {
 			return;
 		}
 		
-		sql = "SELECT * FROM iltornan_bots.scoreHistory WHERE resultID = " + args[0];
+		sql = "SELECT * FROM " + botSettings.resultstbl + " WHERE resultID = " + args[0];
 		
 		con.query(sql, (err, rows) => {
 			if(err) throw err;

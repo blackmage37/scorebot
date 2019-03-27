@@ -1,4 +1,5 @@
 const Discord = require("discord.js");
+const botSettings = require("./botsettings.json");              // loads botsettings from external file
 
 /* retrieves past results from the scorination database
    
@@ -20,7 +21,7 @@ module.exports.run = async (bot, message, args, con) => {
 	// get the last 10 results scorinated by the mentioned user (or the message author if no mention)
 	let target = message.mentions.users.first() || message.author;
 	
-	sql = "SELECT * FROM iltornan_bots.scoreHistory WHERE userID = '" + target.id + "' ORDER BY result_ts DESC LIMIT 10;";
+    sql = "SELECT * FROM " + botSettings.resultstbl + " WHERE userID = '" + target.id + "' ORDER BY result_ts DESC LIMIT 10;";
 	
 	con.query(sql, (err, rows) => {
 		if(err) throw err;

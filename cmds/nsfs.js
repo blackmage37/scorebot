@@ -1,5 +1,6 @@
 const nsfsConfig = require("../nsfs.json");                     // loads NSFS formula details
 const Discord = require("discord.js");
+const botSettings = require("./botsettings.json");              // loads botsettings from external file
 
 // generates random numbers with gaussian distribution using box-muller transform
 // https://stackoverflow.com/a/49434653
@@ -240,7 +241,7 @@ module.exports.run = async (bot, message, args, con) => {
 	console.log(resultString);
 		
     // insert results to database
-	let sql = `INSERT INTO scoreHistory ( userID, messageID, channelID, guildID, formula, params, result ) VALUES ( '${message.author.id}', '${message.id}', '${message.channel.id}', '${message.guild.id}', 'nsfs', '${originalParams}', '${resultString}' )`;
+    let sql = `INSERT INTO ${botSettings.resultstbl} ( userID, messageID, channelID, guildID, formula, params, result ) VALUES ( '${message.author.id}', '${message.id}', '${message.channel.id}', '${message.guild.id}', 'nsfs', '${originalParams}', '${resultString}' )`;
     con.query(sql, (err, row) => {
 		
         if (err) throw err;
