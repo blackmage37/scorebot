@@ -7,7 +7,7 @@ module.exports.run = async (bot, message, args, con) => {
         let originalParams = args.join(' ');
         let hSc = 0;
         let aSc = 0;
-		let insertId = 0;
+	let insertId = 0;
 
         // check there are enough params
         if (args.length < 5) {
@@ -145,31 +145,33 @@ module.exports.run = async (bot, message, args, con) => {
             }
 
         console.log('Away score: ' + aSc);
-
-		console.log('Applying style modifiers...');
-		
+	
+	/* NOTE: SQIS doesn't actually have style modifiers... but we're gonna do a thing anyway
+	         Should probably move this calculation to a separate file at some point */
+	
 		// apply style modifiers
-		
-		/* ORIGINAL CODE: What's "individualScore" doing?
-		
-		int styleEffect = 0;
-		int maxStyleEffect = (homeScore == awayScore ? 0 : abs(homeScore - awayScore) - 1) + min(homeScore, awayScore); // what’s the maximum change we can make that will preserve W/D/L?
-		styleEffect = (int)(s->individualScore("style", (homeStyle + awayStyle) / 20 + 0.5));
-		if(styleEffect < -maxStyleEffect)
-		styleEffect = -maxStyleEffect;
-		homeScore += max(-homeScore, styleEffect); // don’t drop the score below 0
-		awayScore += max(-awayScore, styleEffect); // don’t drop the score below 0
-		return qMakePair(homeScore, awayScore);
-		
-		*/
-		
-		
-		
-		
-		
-		
-		
-		
+		console.log('Applying style modifiers...');
+				
+			// what’s the maximum change we can make that will preserve W/D/L?
+			let maxStyleEffect = (homeScore == awayScore ? 0 : Math.abs(homeScore - awayScore) - 1) + Math.min(homeScore, awayScore);
+	
+			// generate weighted random change
+			let rWt = (homeStyle + awayStyle) / 20 + 0.5;
+			let rWeight = 0.5 - (0.5 - rWt > 0 ? 1 : -1) * Math.pow(Math.abs(0.5 - rWt), 1 / 4.0) / Math.pow(2, 3 / 4.0);
+			let rA = (rWeight > 0.5 ? (rWeight - 0.5) * 2 * (4 - 2) + 2 : rWeight * 2 * (2 - 1.4) + 1.4);
+			let rB = (rWeight > 0.5 ? (0.5 - rWeight) * 2 * (4 - 2) + 2 : (1 - rWeight) * 2 * (2 - 1.4) + 1.4);
+			let styleEffect = Math.pow(1 - Math.pow(1 - Math.random(), 1 / rB), 1 / rA);
+			
+			// ensure generated change is not greater than maxStyleEffect
+			if (styleEffect < maxStyleEffect * -1) {
+				styleEffect = maxStyleEffect * -1;
+				}
+				
+			// apply the change to both scores, but don't drop either score below zero
+			homeScore += Math.max(homeScore * -1, styleEffect);
+			awayScore += Math.max(awayScore * -1, styleEffect);
+	
+	
         // create the result string
         let resultString = home + ' ' + hSc + '-' + aSc + ' ' + away;
         console.log(resultString);
