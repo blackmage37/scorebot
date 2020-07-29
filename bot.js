@@ -1,9 +1,10 @@
 const Discord = require("discord.js");
 const fs = require("fs");
 const mysql = require("mysql");
+const http = require("http");
 
-const botSettings = require("./botsettings.json");              // loads botsettings from external file
-const ref = require("./channels.js");                           // list of channels this bot can be used in
+const botSettings = require('./botsettings.json');              // loads botsettings from external file
+const ref = require('./channels.js');                           // list of channels this bot can be used in
 const cleanChannels = ref.channelArray();
 
 // note that this is a constant; currently this bot will not allow alteration of the prefix

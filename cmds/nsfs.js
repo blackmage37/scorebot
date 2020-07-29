@@ -59,6 +59,12 @@ module.exports.run = async (bot, message, args, con) => {
 	if (args.length > 6) {
         boolNeutral = parseInt(args[6], 10);
 	}
+	
+	// conditional check; defaults to 2 (xkoranate style mods)
+	let modStyle = 2;
+	if (args.length > 7 && args[7] == 'm') {
+		modStyle = 1;
+	}
 
 	// calculate home advantage
 	let homeAdv = 0;
@@ -182,32 +188,8 @@ module.exports.run = async (bot, message, args, con) => {
             styleExp = parseFloat(nsfsConfig.NSFSStyleExponent);
             styleOffset = parseFloat(nsfsConfig.NSFSStyleOffset);
 
-    /*
-     
-       //---------------------------------------------------------------------------------------------------------------------
-       // nsfs style
-       //---------------------------------------------------------------------------------------------------------------------
-	    
-		    let styleMod = (homeStyle + awayStyle) / 2.0 + gaussianRand();
-		    let result = hSc - aSc;
-		    let styleMultiplier = styleCoeffA / (1 + styleCoeffB * Math.pow(Math.E, styleExp * styleMod)) + styleOffset;
-		
-		    console.log('Style multiplier: ' + styleMultiplier);
-		
-		    hSc *= styleMultiplier;
-		    aSc *= styleMultiplier;
-		
-			    // if a negative style mod changed the result to a draw, fix it
-			    if (hSc == aSc && result > 0) {
-				    hSc++;
-			    } else if (hSc == aSc && result < 0) {
-				    aSc++;
-			    }
-
-       //---------------------------------------------------------------------------------------------------------------------
-
-    */
-
+    if (modStyle==2) {
+ 
        //---------------------------------------------------------------------------------------------------------------------
        // xkoranate style
        //---------------------------------------------------------------------------------------------------------------------
@@ -231,7 +213,33 @@ module.exports.run = async (bot, message, args, con) => {
             aSc += Math.max(-aSc, styleEffect);
 
         //---------------------------------------------------------------------------------------------------------------------
+	} else {
+	
+	   //---------------------------------------------------------------------------------------------------------------------
+       // nsfs style
+       //---------------------------------------------------------------------------------------------------------------------
+	    
+		    let styleMod = (homeStyle + awayStyle) / 2.0 + gaussianRand();
+		    let result = hSc - aSc;
+		    let styleMultiplier = styleCoeffA / (1 + styleCoeffB * Math.pow(Math.E, styleExp * styleMod)) + styleOffset;
+		
+		    console.log('Style multiplier: ' + styleMultiplier);
+		
+		    hSc *= styleMultiplier;
+		    aSc *= styleMultiplier;
+		
+			    // if a negative style mod changed the result to a draw, fix it
+			    if (hSc == aSc && result > 0) {
+				    hSc++;
+			    } else if (hSc == aSc && result < 0) {
+				    aSc++;
+			    }
 
+       //---------------------------------------------------------------------------------------------------------------------
+
+	}
+
+		
     // round the scores to whole numbers
     hSc = Math.round(hSc);
     aSc = Math.round(aSc);
